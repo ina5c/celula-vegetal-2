@@ -11,3 +11,24 @@ const onProgress = (event) => {
   }
 };
 document.querySelector('model-viewer').addEventListener('progress', onProgress);
+document.addEventListener('DOMContentLoaded', () => {
+  const modelViewer = document.querySelector('model-viewer');
+  const hotspots = modelViewer.querySelectorAll('.Hotspot');
+  
+  hotspots.forEach((hotspot) => {
+    hotspot.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isActive = hotspot.dataset.active === 'true';
+      
+      hotspots.forEach(h => h.dataset.active = 'false');
+      
+      if (!isActive) {
+        hotspot.dataset.active = 'true';
+      }
+    });
+  });
+  
+  modelViewer.addEventListener('click', () => {
+    hotspots.forEach(h => h.dataset.active = 'false');
+  });
+});
