@@ -167,29 +167,31 @@ model-viewer[ar-status="session-started"] > #ar-prompt {
 model-viewer > #ar-prompt > img {
   animation: circle 4s linear infinite;
 }
-/* Oculta todos los textos por defecto */
 .HotspotAnnotation {
   display: none;
   position: absolute;
-  background: #fff;
+  background: white;
   border-radius: 8px;
   padding: 12px;
   min-width: 200px;
-  max-width: 250px;
+  max-width: 280px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-  transform: translate3d(-50%, -100%, 0);
-  margin-top: -10px;
+  transform: translate3d(-50%, -120%, 0);
+  color: black;
   font-size: 14px;
+  z-index: 1;
+  pointer-events: auto;
 }
-Hotspot[data-active="true"] .HotspotAnnotation {
+
+.Hotspot.active .HotspotAnnotation {
   display: block;
 }
 
 .Hotspot {
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
-  border: 2px solid white;
+  border: 3px solid white;
   background: #4285f4;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  cursor: pointer;
 }
