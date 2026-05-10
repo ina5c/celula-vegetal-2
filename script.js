@@ -11,24 +11,25 @@ const onProgress = (event) => {
   }
 };
 document.querySelector('model-viewer').addEventListener('progress', onProgress);
-document.addEventListener('DOMContentLoaded', () => {
-  const modelViewer = document.querySelector('model-viewer');
-  const hotspots = modelViewer.querySelectorAll('.Hotspot');
+const modelViewer = document.querySelector("model-viewer");
+
+modelViewer.addEventListener("load", () => {
+  const hotspots = modelViewer.querySelectorAll(".Hotspot");
   
   hotspots.forEach((hotspot) => {
-    hotspot.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const isActive = hotspot.dataset.active === 'true';
+    hotspot.addEventListener("click", (event) => {
+      event.stopPropagation();
       
-      hotspots.forEach(h => h.dataset.active = 'false');
-      
-      if (!isActive) {
-        hotspot.dataset.active = 'true';
+      if (hotspot.classList.contains("active")) {
+        hotspot.classList.remove("active");
+      } else {
+       hotspots.forEach(h => h.classList.remove("active"));
+        hotspot.classList.add("active");
       }
     });
   });
   
-  modelViewer.addEventListener('click', () => {
-    hotspots.forEach(h => h.dataset.active = 'false');
+ modelViewer.addEventListener("click", () => {
+    hotspots.forEach(h => h.classList.remove("active"));
   });
 });
